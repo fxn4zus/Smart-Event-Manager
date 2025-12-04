@@ -1,0 +1,26 @@
+{
+  "name": "event-manager-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "concurrently \"tsc -w\" \"node --watch dist/server.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@prisma/client": "^6.15.0",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.6",
+    "concurrently": "^8.2.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "prisma": "^6.15.0",
+    "typescript": "^5.9.3"
+  }
+}
