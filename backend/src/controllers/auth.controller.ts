@@ -7,8 +7,8 @@ import {
   findRefreshToken,
   findUserByEmail,
   findUserById,
-  forgetPassword,
   getMe,
+  resetPassword,
 } from "../repositories/auth.repository.js";
 import { verifyEmailSMTP } from "../utils/verifyEmail.js";
 import { registerSchema, loginSchema } from "../utils/validation.js"; // Zod schemas
@@ -151,7 +151,7 @@ export const getMyProfile = async (req: AuthRequest, res: Response) => {
   }
 };
 
-export const forgetOldPassword = async (req: AuthRequest, res: Response) => {
+export const passwordReset = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.id;
 
@@ -181,7 +181,7 @@ export const forgetOldPassword = async (req: AuthRequest, res: Response) => {
     }
     const hashedNewPassword = await bcrypt.hash(newPassword, 10);
 
-    const updatedUser = await forgetPassword(
+    const updatedUser = await resetPassword(
       userId,
       oldPassword,
       hashedNewPassword
