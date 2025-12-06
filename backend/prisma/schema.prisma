@@ -20,15 +20,16 @@ enum Role {
 }
 
 model User {
-  id            String   @id @default(uuid())
+  id            String         @id @default(uuid())
   name          String
-  email         String   @unique
+  email         String         @unique
   password      String
-  role          Role     @default(ATTENDEE)
+  role          Role           @default(ATTENDEE)
   tickets       Ticket[]
   events        Event[]
-  createdAt     DateTime @default(now())
-  totalAttended Int      @default(0) 
+  createdAt     DateTime       @default(now())
+  totalAttended Int            @default(0)
+  refreshTokens RefreshToken[]
 }
 
 model Event {
@@ -51,4 +52,12 @@ model Ticket {
   event    Event   @relation(fields: [eventId], references: [id])
   eventId  String
   attended Boolean @default(false)
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  createdAt DateTime @default(now())
 }
